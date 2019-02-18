@@ -1,0 +1,79 @@
+  <!-- Logo -->
+  <a href="/" class="navbar-wagon-brand">
+    <img src="cocktails_dreams_logo.jpg" alt="Cocktails & Dreams">
+  </a>
+
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+    <a href="" class="navbar-wagon-item navbar-wagon-link">Discover Cocktails</a>
+    <a href="" class="navbar-wagon-item navbar-wagon-link">New Cocktail</a>
+    <a href="" class="navbar-wagon-item navbar-wagon-link">Messages</a>
+
+    <!-- Profile picture with dropdown list -->
+    <div class="navbar-wagon-item">
+      <div class="dropdown">
+        <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Log Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dropdown appearing on mobile only -->
+  <div class="navbar-wagon-item hidden-md hidden-lg">
+    <div class="dropdown">
+      <i class="fas fa-bars dropdown-toggle" data-toggle="dropdown" role="button"></i>
+      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+        <li><a href="#">Discover Cocktails</a></li>
+        <li><a href="#">New cocktail</a></li>
+        <li><a href="#">Messagese</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- banner -->
+
+<div class="banner">
+  <div class="container">
+    <h1>Add your ingredients</h1>
+  </div>
+</div>
+
+<!-- container -->
+<div class="container">
+  <div class="row">
+    <% @cocktail.doses.each do |dose| %>
+      <div class="col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= cocktail.image_url %>');">
+          <div class="card-description">
+            <h2><%= dose.name %></h2>
+          </div>
+          <%= link_to "+", dose_path(dose), method: :delete, data: { confirm: "Are you sure?" }, class: "card-remove-link" %>
+          <div class="card-ingredients">
+            <% dose.ingredients.each do |ingredient| %>
+              <div class="card-ingredient"><%= ingredient.name %></div>
+            <% end %>
+            <%= link_to "+", new_cocktail_dose_ingredient_path(dose.id), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <h4>Add a dose:</h4>
+      <%= simple_form_for [ @cocktail, @dose ] do |f| %>
+        <%= f.input :name, placeholder: "mint" %>
+        <%= f.input :image_url, placeholder: "https://raw.githubusercontent.com/lewagon/fullstack-images/master/rails/parks-and-plants/philo.jpg" %>
+        <%= f.submit "Add", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
