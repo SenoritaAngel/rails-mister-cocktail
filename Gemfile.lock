@@ -111,8 +111,10 @@ GEM
     pg (1.2.3)
     pg (1.2.3-x64-mingw32)
     pg (1.2.3-x86-mingw32)
-    puma (3.12.6)
-    puma (3.12.6-java)
+    puma (4.3.9)
+      nio4r (~> 2.0)
+    puma (4.3.9-java)
+      nio4r (~> 2.0)
     rack (2.2.3)
     rack-proxy (0.6.5)
       rack
@@ -244,7 +246,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
-  puma (~> 3.12)
+  puma (~> 4.3)
   rails (~> 5.2.2)
   rails-controller-testing
   rspec-rails
